@@ -3,13 +3,21 @@ matrix:
   exclude:
     - python: "3.3"
       env: REQ="django<1.5" DB=postgresql CITIES_LIGHT_CITY_SOURCE=cities1000
+      env: REQ="django<1.5" DB=mysql CITIES_LIGHT_CITY_SOURCE=cities1000
+      env: REQ="django<1.5" DB=sqlite CITIES_LIGHT_CITY_SOURCE=cities1000
 python:
   - "2.7"
   - "3.3"
 env:
   - REQ="django<1.5" DB=postgresql CITIES_LIGHT_CITY_SOURCE=cities1000
+  - REQ="django<1.5" DB=mysql CITIES_LIGHT_CITY_SOURCE=cities1000
+  - REQ="django<1.5" DB=sqlite CITIES_LIGHT_CITY_SOURCE=cities1000
   - REQ="django<1.6" DB=postgresql
+  - REQ="django<1.6" DB=sqlite
+  - REQ="django<1.6" DB=mysql
   - REQ="-e git+https://github.com/django/django.git@1.7b2#egg=django" DB=postgresql
+  - REQ="-e git+https://github.com/django/django.git@1.7b2#egg=django" DB=mysql
+  - REQ="-e git+https://github.com/django/django.git@1.7b2#egg=django" DB=sqlite
   - REQ="django<1.7" DB=postgresql
   - REQ="django<1.7" DB=mysql
   - REQ="django<1.7" DB=sqlite
