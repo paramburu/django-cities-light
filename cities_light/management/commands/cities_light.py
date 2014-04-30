@@ -125,6 +125,7 @@ It is possible to force the import of files which weren't downloaded using the
                     if f in destination_file_name or f in url:
                         force = True
 
+            transaction.commit()
             connection.close()
             geonames = Geonames(url, force=force)
             downloaded = geonames.downloaded
