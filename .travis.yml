@@ -2,9 +2,10 @@ language: python
 matrix:
   exclude:
     - python: "3.3"
-      env: REQ="django<1.5" DB=postgresql CITIES_LIGHT_CITY_SOURCE=cities1000
-      env: REQ="django<1.5" DB=mysql CITIES_LIGHT_CITY_SOURCE=cities1000
-      env: REQ="django<1.5" DB=sqlite CITIES_LIGHT_CITY_SOURCE=cities1000
+      env: 
+        - REQ="django<1.5" DB=postgresql CITIES_LIGHT_CITY_SOURCE=cities1000
+        - REQ="django<1.5" DB=mysql CITIES_LIGHT_CITY_SOURCE=cities1000
+        - REQ="django<1.5" DB=sqlite CITIES_LIGHT_CITY_SOURCE=cities1000
 python:
   - "2.7"
   - "3.3"
