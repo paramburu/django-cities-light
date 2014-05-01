@@ -96,7 +96,6 @@ It is possible to force the import of files which weren't downloaded using the
             print('Do not kill me !')
             self._travis_last_output = now
 
-    @transaction.commit_on_success
     def handle(self, *args, **options):
         if not os.path.exists(DATA_DIR):
             self.logger.info('Creating %s' % DATA_DIR)
@@ -125,7 +124,6 @@ It is possible to force the import of files which weren't downloaded using the
                     if f in destination_file_name or f in url:
                         force = True
 
-            transaction.commit()
             connection.close()
             geonames = Geonames(url, force=force)
             downloaded = geonames.downloaded
@@ -227,6 +225,7 @@ It is possible to force the import of files which weren't downloaded using the
 
         return self._region_codes[country_id][region_id]
 
+    @transaction.commit_on_success
     def country_import(self, items):
         try:
             country_items_pre_import.send(sender=self, items=items)
@@ -251,6 +250,7 @@ It is possible to force the import of files which weren't downloaded using the
 
         self.save(country)
 
+    @transaction.commit_on_success
     def region_import(self, items):
         try:
             region_items_pre_import.send(sender=self, items=items)
@@ -294,6 +294,7 @@ It is possible to force the import of files which weren't downloaded using the
         region.geoname_id = items[3]
         self.save(region)
 
+    @transaction.commit_on_success
     def city_import(self, items):
         try:
             city_items_pre_import.send(sender=self, items=items)
@@ -423,6 +424,7 @@ It is possible to force the import of files which weren't downloaded using the
 
         self.translation_data[model_class][items[1]][items[2]].append(items[3])
 
+    @transaction.commit_on_success
     def translation_import(self):
         data = getattr(self, 'translation_data', None)
 
